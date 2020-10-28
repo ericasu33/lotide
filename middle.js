@@ -21,7 +21,7 @@ const middle = (arr) => {
   let midValArr = [];
   const arrLength = arr.length;
 
-  if (!arrLength || arrLength === 1 || arrLength === 2 ){
+  if (arrLength <= 2){
     return [];
   } else if (arrLength % 2 === 0) { //even
     midValArr.push(arr[arrLength / 2] - 1);  //arr[1]
