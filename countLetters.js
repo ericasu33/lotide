@@ -7,9 +7,9 @@ const assertEqual = (actual, expected) => {
 };
 
 const countLetters = (sentence) => {
-  let noSpace = sentence.split(" ").join("");
+  const noSpace = sentence.split(" ").join("");
 
-  let results = {};
+  const results = {};
   for (const letter of noSpace) {
     if (results[letter]) {
       results[letter] += 1;
