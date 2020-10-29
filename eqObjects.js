@@ -13,7 +13,7 @@ const eqArrays = (actual, expected) => {
   for (let i = 0; i < actual.length; i++) {
     if (actual[i] !== expected[i]) {
       return false;
-    } 
+    }
   }
 
   return true;
@@ -29,7 +29,7 @@ const eqObjects = (obj1, obj2) => {
     // console.log(obj2[val]);
     if (!obj2[val]) return false; //key in obj1 does not exist in obj2
 
-    if(Array.isArray(obj1[val]) || Array.isArray(obj2[val])) {
+    if (Array.isArray(obj1[val]) || Array.isArray(obj2[val])) {
       return eqArrays(obj1[val], obj2[val]);
     } else {
       if (obj1[val] !== obj2[val]) return false; //value in obj1 != value in obj2
