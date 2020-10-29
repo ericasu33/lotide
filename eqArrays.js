@@ -17,7 +17,7 @@ const eqArrays = (actual, expected) => {
       // compare = false;
       // break;
       return false;
-    } 
+    }
   }
 
   return true;
