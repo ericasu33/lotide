@@ -20,47 +20,37 @@ const eqArrays = (actual, expected) => {
 };
 
 const eqObjects = (obj1, obj2) => {
+  let output = true;
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
-  }
-
-  for (let val of Object.keys(obj1)) {
-    // console.log(val);
-    // console.log(obj2[val]);
-    // if (!obj2[val]) {
-    //   return false;
-    // } 
-    // don't need this because we can test this with the else if statement at the bottom. 
+  } else for (let key of Object.keys(obj1)) {
+    // if (!obj2[key]) {return false};
+    // don't need this because we can test this with the else if statement at the bottom.
     // As if the key doesn't exist, the value would be undefined.
-    if (Array.isArray(obj1[val]) && Array.isArray(obj2[val])) {
-      //not using || 
+    if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+      output = output && eqArrays(obj1[key], obj2[key]); //using && cuz of iteration
+      //not using ||
       //b/c if obj1, obj2 were diff type
       // where one obj has no arr at all
-      // the last else if statement will test the case and return false 
-      // as array !== string. 
+      // the last else if statement will test the case and return false
+      // as array !== string.
       // In additon if we use || the eqArrays for loop (index) comparison will mess up.
-      if (!eqArrays(obj1[val], obj2[val])) { 
-        //if we test if its true, 
-        //the function will stop here 
-        //even if there is still more cases to test in the object.
-        return false;
-      }
-    } else if (!Array.isArray(obj1[val] && !Array.isArray(obj2[val]))) {
-      if (typeof obj1[val] === "object") {
-        return eqObjects(obj1[val], obj2[val]);
-      }
-    } else if (obj1[val] !== obj2[val]) {
-      return false; //value in obj1 != value in obj2
+    } else if (typeof obj1[key] === "object" || typeof obj2[key] === "object") {
+      output = output && eqObjects(obj1[key], obj2[key]);
+    } else if (obj1[key] !== obj2[key]) {
+      output = false; //because we are returning false, its ok to go without &&
     }
   }
 
-  return true;
+  return output;
 };
 
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })) // => false
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })) // => false
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })) // => false
-console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })) // => true
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0})); // => false
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { b: 2, a: { z: 1, y: 0 } })); // => true
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })); // => false
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => false
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })); // => false
+console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => true
 
 // const bestTVShowsByGenre = {
 //   drama:  "The Wire",
@@ -77,7 +67,7 @@ console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })) // => true
 // const ab = { a: "1", b: "2" };
 // const ba = { b: "2", a: "1" };
 // const abc = { a: "1", b: "2", c: "3" };
-// const abd = { a: "1", b: "2", d: "3"}; 
+// const abd = { a: "1", b: "2", d: "3"};
 
 // const cd = { c: "1", d: ["2", 3]};
 // const ce = { c: ["2", 3], d: "1"};
