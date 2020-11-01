@@ -31,7 +31,7 @@ const eqObjects = (obj1, obj2) => {
     //   return false;
     // } 
     // don't need this because we can test this with the else if statement at the bottom. 
-    //As if the key doesn't exist, the value would be undefined.
+    // As if the key doesn't exist, the value would be undefined.
     if (Array.isArray(obj1[val]) && Array.isArray(obj2[val])) {
       //not using || 
       //b/c if obj1, obj2 were diff type
@@ -45,6 +45,10 @@ const eqObjects = (obj1, obj2) => {
         //even if there is still more cases to test in the object.
         return false;
       }
+    } else if (!Array.isArray(obj1[val] && !Array.isArray(obj2[val]))) {
+      if (typeof obj1[val] === "object") {
+        return eqObjects(obj1[val], obj2[val]);
+      }
     } else if (obj1[val] !== obj2[val]) {
       return false; //value in obj1 != value in obj2
     }
@@ -53,35 +57,39 @@ const eqObjects = (obj1, obj2) => {
   return true;
 };
 
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })) // => false
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })) // => false
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })) // => false
+console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })) // => true
 
-const bestTVShowsByGenre = {
-  drama:  "The Wire",
-  sci_fi: "The Expanse",
-  comedy: "Brooklyn Nine-Nine",
-};
+// const bestTVShowsByGenre = {
+//   drama:  "The Wire",
+//   sci_fi: "The Expanse",
+//   comedy: "Brooklyn Nine-Nine",
+// };
 
-const bestTVShowsByGenre2 = {
-  sci_fi: "The Expanse",
-  comedy: "Brooklyn Nine-Nine",
-  drama:  "The Wire"
-};
+// const bestTVShowsByGenre2 = {
+//   sci_fi: "The Expanse",
+//   comedy: "Brooklyn Nine-Nine",
+//   drama:  "The Wire"
+// };
 
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-const abc = { a: "1", b: "2", c: "3" };
-const abd = { a: "1", b: "2", d: "3"}; 
+// const ab = { a: "1", b: "2" };
+// const ba = { b: "2", a: "1" };
+// const abc = { a: "1", b: "2", c: "3" };
+// const abd = { a: "1", b: "2", d: "3"}; 
 
-const cd = { c: "1", d: ["2", 3]};
-const ce = { c: ["2", 3], d: "1"};
-const dc = { d: ["2", 3], c: "2" };
-const cd2 = { c: "1", d: ["2", 3, 4] };
+// const cd = { c: "1", d: ["2", 3]};
+// const ce = { c: ["2", 3], d: "1"};
+// const dc = { d: ["2", 3], c: "2" };
+// const cd2 = { c: "1", d: ["2", 3, 4] };
 
 // assertEqual(eqObjects(bestTVShowsByGenre, bestTVShowsByGenre2), true);
 // assertEqual(eqObjects(ab, ba), true);
 // assertEqual(eqObjects(ab, abc), false);
 // assertEqual(eqObjects(abd, abc), false);
-assertEqual(eqObjects(cd, ab), false);
-console.log(eqObjects(cd, ab))
+// assertEqual(eqObjects(cd, ab), false);
+// console.log(eqObjects(cd, ab))
 
 // assertEqual(eqObjects(cd, dc), true);
 // assertEqual(eqObjects(cd, ce), false);
