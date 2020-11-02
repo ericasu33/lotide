@@ -6,18 +6,7 @@ const assertEqual = (actual, expected) => {
   }
 };
 
-const eqArrays = (actual, expected) => {
-  if (actual.length !== expected.length) {
-    return false;
-  }
-  for (let i = 0; i < actual.length; i++) {
-    if (actual[i] !== expected[i]) {
-      return false;
-    }
-  }
-
-  return true;
-};
+const eqArrays = require("./eqArrays");
 
 const eqObjects = (obj1, obj2) => {
   let output = true;
@@ -46,7 +35,6 @@ const eqObjects = (obj1, obj2) => {
 };
 
 module.exports = eqObjects;
-
 // console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0})); // => false
 // console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { b: 2, a: { z: 1, y: 0 } })); // => true
 // console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })); // => false
