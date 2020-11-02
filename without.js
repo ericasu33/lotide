@@ -5,7 +5,7 @@ const eqArrays = (actual, expected) => {
   for (let i = 0; i < actual.length; i++) {
     if (actual[i] !== expected[i]) {
       return false;
-    } 
+    }
   }
 
   return true;
@@ -33,6 +33,8 @@ const without = (sourceArr, itemsToRemoveArr) => {
   // console.log(`source ${sourceArr}`);
   return newArr;
 };
+
+module.exports = without;
 
 // console.log(without([1, 2, 3], [2, 1, 4])) // => [3]
 // console.log(without(["1", "2", "3"], [3, "1", "2"])) // => ["3"]

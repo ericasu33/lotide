@@ -33,6 +33,7 @@ const letterPositions = (sentence) => {
   return result;
 };
 
+module.exports = letterPositions;
 
 const results1 = letterPositions("lighthouse in the house");
 assertArraysEqual(results1["l"], [0]);

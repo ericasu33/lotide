@@ -45,51 +45,52 @@ const eqObjects = (obj1, obj2) => {
   return output;
 };
 
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0})); // => false
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { b: 2, a: { z: 1, y: 0 } })); // => true
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })); // => false
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => false
-console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })); // => false
-console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => true
+module.exports = eqObjects;
 
-// const bestTVShowsByGenre = {
-//   drama:  "The Wire",
-//   sci_fi: "The Expanse",
-//   comedy: "Brooklyn Nine-Nine",
-// };
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0})); // => false
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { b: 2, a: { z: 1, y: 0 } })); // => true
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { y:0, z: 1 }, y:0, b:2 })); // => false
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => false
+// console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })); // => false
+// console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => true
 
-// const bestTVShowsByGenre2 = {
-//   sci_fi: "The Expanse",
-//   comedy: "Brooklyn Nine-Nine",
-//   drama:  "The Wire"
-// };
+const bestTVShowsByGenre = {
+  drama:  "The Wire",
+  sci_fi: "The Expanse",
+  comedy: "Brooklyn Nine-Nine",
+};
 
-// const ab = { a: "1", b: "2" };
-// const ba = { b: "2", a: "1" };
-// const abc = { a: "1", b: "2", c: "3" };
-// const abd = { a: "1", b: "2", d: "3"};
+const bestTVShowsByGenre2 = {
+  sci_fi: "The Expanse",
+  comedy: "Brooklyn Nine-Nine",
+  drama:  "The Wire"
+};
 
-// const cd = { c: "1", d: ["2", 3]};
-// const ce = { c: ["2", 3], d: "1"};
-// const dc = { d: ["2", 3], c: "2" };
-// const cd2 = { c: "1", d: ["2", 3, 4] };
+const ab = { a: "1", b: "2" };
+const ba = { b: "2", a: "1" };
+const abc = { a: "1", b: "2", c: "3" };
+const abd = { a: "1", b: "2", d: "3"};
 
-// assertEqual(eqObjects(bestTVShowsByGenre, bestTVShowsByGenre2), true);
-// assertEqual(eqObjects(ab, ba), true);
-// assertEqual(eqObjects(ab, abc), false);
-// assertEqual(eqObjects(abd, abc), false);
-// assertEqual(eqObjects(cd, ab), false);
-// console.log(eqObjects(cd, ab))
+const cd = { c: "1", d: ["2", 3]};
+const ce = { c: ["2", 3], d: "1"};
+const dc = { d: ["2", 3], c: "2" };
+const cd2 = { c: "1", d: ["2", 3, 4] };
 
-// assertEqual(eqObjects(cd, dc), true);
-// assertEqual(eqObjects(cd, ce), false);
-// assertEqual(eqObjects(cd, cd2), false);
-// assertEqual(eqObjects(dc, cd), false);
+assertEqual(eqObjects(bestTVShowsByGenre, bestTVShowsByGenre2), true);
+assertEqual(eqObjects(ab, ba), true);
+assertEqual(eqObjects(ab, abc), false);
+assertEqual(eqObjects(abd, abc), false);
+assertEqual(eqObjects(cd, ab), false);
 
-// console.log(eqObjects(bestTVShowsByGenre, bestTVShowsByGenre2)); // true
-// console.log(eqObjects(ab, ba)); // => true
-// console.log(eqObjects(ab, abc)); // => false
+assertEqual(eqObjects(cd, dc), false);
+assertEqual(eqObjects(cd, ce), false);
+assertEqual(eqObjects(cd, cd2), false);
+assertEqual(eqObjects(dc, cd), false);
 
-// console.log(eqObjects(cd, dc)); // => true
-// console.log(eqObjects(cd, ce)); // => false
-// console.log(eqObjects(cd, cd2)); // => false
+console.log(eqObjects(bestTVShowsByGenre, bestTVShowsByGenre2)); // true
+console.log(eqObjects(ab, ba)); // => true
+console.log(eqObjects(ab, abc)); // => false
+
+console.log(eqObjects(cd, dc)); // => false
+console.log(eqObjects(cd, ce)); // => false
+console.log(eqObjects(cd, cd2)); // => false

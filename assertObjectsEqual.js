@@ -18,11 +18,11 @@ const eqObjects = (obj1, obj2) => {
 
   for (let val of Object.keys(obj1)) {
     if (Array.isArray(obj1[val]) && Array.isArray(obj2[val])) {
-      if (!eqArrays(obj1[val], obj2[val])) { 
+      if (!eqArrays(obj1[val], obj2[val])) {
         return false;
       }
     } else if (obj1[val] !== obj2[val]) {
-      return false; 
+      return false;
     }
   }
   return true;
@@ -31,9 +31,11 @@ const assertObjectsEqual = (actual, expected) => {
   const inspect = require('util').inspect;
 
   eqObjects(actual, expected) ?
-  console.log(`😊😊😊 Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`) :
-  console.log(`😡😡😡 Asserion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-}
+    console.log(`😊😊😊 Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`) :
+    console.log(`😡😡😡 Asserion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
+};
+
+module.exports = assertObjectsEqual;
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };

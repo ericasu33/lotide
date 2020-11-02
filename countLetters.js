@@ -21,6 +21,8 @@ const countLetters = (sentence) => {
   return results;
 };
 
+module.exports = countLetters;
+
 const results1 = countLetters("light house in the house");
 
 assertEqual(results1["l"], 1);

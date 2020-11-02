@@ -36,6 +36,8 @@ const map = (arr, callback) => {
   return resultArr;
 };
 
+module.exports = map;
+
 const results = map(words, word => word[0]);
 const results1 = map(numbers, number => number * 2);
 const heroName = map(heroes, hero => hero.name);
