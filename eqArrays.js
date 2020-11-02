@@ -1,3 +1,5 @@
+//compare two arrays for a perfect match.
+
 const eqArrays = (actual, expected) => {
   let output = true;
   if (actual.length !== expected.length) {
